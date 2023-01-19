@@ -5,12 +5,14 @@ const todoList= [
   {
     name: 'Organize Garage',
     id: 1528817077286, 
-    completed: false
+    completed: false,
+    visible:true
   },
   {
     name: 'Bake Cookies',
     id: 1528817084358,
-    completed: false
+    completed: false,
+    visible:true
   }
 ]
 export default class App extends React.Component {
@@ -25,7 +27,8 @@ export default class App extends React.Component {
     const newTodo = {
       name: todo,
       id: Date.now(),
-      completed:false
+      completed:false,
+      visible:true
     }
     this.setState({...this.state, todoList:[...this.state.todoList,newTodo]})
   }
@@ -42,6 +45,19 @@ export default class App extends React.Component {
     })
   }
 
+  hideCompleted = () =>{
+    this.setState({
+      ...this.state, 
+      todoList: this.state.todoList.map(todo=>{
+        if(todo.completed===true){
+          return {...todo, visible: !todo.visible}
+        }
+        return todo;
+      })
+    })
+  }
+
+  
 
   render() {
     const {todoList} = this.state;
@@ -49,8 +65,7 @@ export default class App extends React.Component {
       <div>
         <h2>Todos:</h2>
         <TodoList todoList={todoList} toggleTodo={this.toggleTodo}/>
-        <Form addTodo={this.addTodo}/>
-        <button>Hide completed</button>
+        <Form addTodo={this.addTodo} hideCompleted={this.hideCompleted}/>
       </div>
     )
   }

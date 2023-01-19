@@ -5,9 +5,11 @@ export default class Todo extends React.Component {
     
     const {todo}=this.props;
     return (
-      <div onClick={()=>this.props.toggleTodo(todo.id)}>
+     <div>
+      {todo.visible &&   <div onClick={()=>this.props.toggleTodo(todo.id)}>
         <p>{todo.name} {todo.completed?"✅":""}</p>
-      </div>
+      </div>}
+     </div>
     )
   }
 }
