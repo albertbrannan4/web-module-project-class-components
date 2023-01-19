@@ -17,8 +17,7 @@ export default class App extends React.Component {
   constructor(){
     super();
     this.state={
-      todoList: todoList,
-      hideCompleted:false
+      todoList: todoList
     }
   }
 
@@ -46,7 +45,6 @@ export default class App extends React.Component {
 
   render() {
     const {todoList} = this.state;
-    console.log(this.state.hideCompleted)
     return (
       <div>
         <h2>Todos:</h2>
